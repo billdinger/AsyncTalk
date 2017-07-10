@@ -50,10 +50,9 @@ namespace AsyncDemo
 
         public void SpinWait(int sleep)
         {
-            System.Threading.Thread.Sleep(new TimeSpan(0, 0, sleep));
+            Thread.Sleep(new TimeSpan(0, 0, sleep));
             Console.WriteLine($"I slept for {sleep} seconds");
         }
-
 
     }
 }

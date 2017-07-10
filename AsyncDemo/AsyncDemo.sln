@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncDemo", "AsyncDemo.csproj", "{5A65ED1E-905C-45D3-8B77-144389013355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAsyncExample", "..\WebApiAsyncExample\WebApiAsyncExample.csproj", "{1A95DB96-3E16-495D-82E9-19CFB6A776D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDemo", "..\WebApiAsyncExample\WebDemo.csproj", "{1A95DB96-3E16-495D-82E9-19CFB6A776D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
