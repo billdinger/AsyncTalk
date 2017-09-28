@@ -104,8 +104,8 @@ namespace AsyncDemo
             var cts = new CancellationTokenSource();
             var taskA = Task.Factory.StartNew(() => Load.CheckIfCancel(cts.Token), cts.Token);
             var taskB = Task.Factory.StartNew(Load.SomeWork, cts.Token);
-            Task.WaitAll(new Task[] { taskA, taskB });
             cts.Cancel();
+            Task.WaitAll(new Task[] { taskA, taskB });
         }
 
         public void RunATaskFactory()
@@ -179,6 +179,7 @@ namespace AsyncDemo
             }
             catch (AggregateException agEx)
             {
+
                 agEx.Flatten();
                 foreach (var ex in agEx.InnerExceptions)
                 {

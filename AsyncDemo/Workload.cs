@@ -36,7 +36,7 @@ namespace AsyncDemo
 
         public IEnumerable<int> LotsOfWork()
         {
-            var waitTime = Rando.Next(0, 10);
+            var waitTime = Rando.Next(3, 10);
             Thread.Sleep(new TimeSpan(0, 0, waitTime));
 
             var list = new List<int>();
