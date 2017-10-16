@@ -9,6 +9,9 @@ namespace WebApiAsyncExample.Controllers
     [Route("/home")]
     public class HomeController : ApiController
     {
+        private const string testUrl = "https://www.sprint.com/api/digital/devices/v1/lookup/devices?defaultSKUPrice=SINGLE_PRICING&deviceType=PHONES&flow=GROSS_ADD";
+
+
         [Route("dontlock")]
         [HttpGet]
         public async Task<string> DontLock()
@@ -25,6 +28,7 @@ namespace WebApiAsyncExample.Controllers
         }
 
         [Route("deadlock")]
+        [HttpGet]
         public string Deadlock()
         {
             // The following code WILL deadlock.
@@ -44,12 +48,13 @@ namespace WebApiAsyncExample.Controllers
             return DateTime.Now.ToString();
         }
 
+      
         private string GetHttpResult()
         {
             using (var httpclient = new HttpClient())
             {
                 using (var result =
-                    httpclient.GetAsync("https://www.sprint.com/api/digital/devices/v1/lookup/devices?defaultSKUPrice=SINGLE_PRICING&deviceType=PHONES&flow=GROSS_ADD"))
+                    httpclient.GetAsync(testUrl))
                 {
                     using (var content = result.Result.Content.ReadAsStringAsync())
                     {
@@ -64,7 +69,7 @@ namespace WebApiAsyncExample.Controllers
             using (var httpclient = new HttpClient())
             {
                 using (var result =
-                    await httpclient.GetAsync("http://localhost:7385/solr/sitecore_web_index/select?q=*%3A*&wt=json&indent=true"))
+                    await httpclient.GetAsync(testUrl))
                 {
                     var content = await result.Content.ReadAsStringAsync();
                     return content;
