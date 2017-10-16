@@ -15,7 +15,7 @@ namespace WebApiAsyncExample.Controllers
         {
 
             var tasks = new List<Task<string>>();
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 tasks.Add(await Task.Factory.StartNew(GetHttpResultAsync));
             }
@@ -24,11 +24,19 @@ namespace WebApiAsyncExample.Controllers
             return DateTime.Now.ToString();
         }
 
+        [Route("deadlock")]
+        public string Deadlock()
+        {
+            // The following code WILL deadlock.
+            var result = GetHttpResultAsync().Result;
+            return result;
+        }
+
         [Route("dolock")]
         [HttpGet]
         public string DoLock()
         {
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var result = GetHttpResult();
             }
@@ -41,7 +49,7 @@ namespace WebApiAsyncExample.Controllers
             using (var httpclient = new HttpClient())
             {
                 using (var result =
-                    httpclient.GetAsync("http://localhost:7385/solr/sitecore_web_index/select?q=*%3A*&wt=json&indent=true"))
+                    httpclient.GetAsync("https://www.sprint.com/api/digital/devices/v1/lookup/devices?defaultSKUPrice=SINGLE_PRICING&deviceType=PHONES&flow=GROSS_ADD"))
                 {
                     using (var content = result.Result.Content.ReadAsStringAsync())
                     {
